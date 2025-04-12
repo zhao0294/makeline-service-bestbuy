@@ -25,8 +25,8 @@ Set the connection information for the RabbitMQ queue by running the following c
 
 ```bash
 export ORDER_QUEUE_URI=amqp://localhost
-export ORDER_QUEUE_USERNAME=username
-export ORDER_QUEUE_PASSWORD=password
+export ORDER_QUEUE_LISTENER_USERNAME=username
+export ORDER_QUEUE_LISTENER_PASSWORD=password
 export ORDER_QUEUE_NAME=orders
 ```
 
@@ -85,8 +85,8 @@ Finally, set the environment variables.
 
 ```bash
 export ORDER_QUEUE_URI=amqps://$HOSTNAME
-export ORDER_QUEUE_USERNAME=listener
-export ORDER_QUEUE_PASSWORD=$PASSWORD
+export ORDER_QUEUE_LISTENER_USERNAME=listener
+export ORDER_QUEUE_LISTENER_PASSWORD=$PASSWORD
 export ORDER_QUEUE_NAME=orders
 ```
 
