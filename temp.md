@@ -1,3 +1,24 @@
+# Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Makeline Service](#makeline-service)
+  - [Overview](#overview)
+  - [Prerequisites](#prerequisites)
+  - [Setup Instructions](#setup-instructions)
+    - [1. Configure Azure Service Bus (Message Queue)](#1-configure-azure-service-bus-message-queue)
+      - [Option 1: Azure CLI](#option-1-azure-cli)
+      - [Option 2: Azure Portal](#option-2-azure-portal)
+    - [2. Configure MongoDB (Database)](#2-configure-mongodb-database)
+    - [3. Run the Application Locally](#3-run-the-application-locally)
+  - [Testing the API](#testing-the-api)
+  - [Querying MongoDB](#querying-mongodb)
+  - [Additional Notes](#additional-notes)
+  - [Summary: Makeline Service Environment Variables](#summary-makeline-service-environment-variables)
+    - [Azure Service Bus Related Environment Variables](#azure-service-bus-related-environment-variables)
+    - [MongoDB Related Environment Variables](#mongodb-related-environment-variables)
+    - [GIN Mode Setting](#gin-mode-setting)
+
+---
 # Makeline Service
 
 The **Makeline Service** is a Go-based REST API built with the [Gin framework](https://github.com/gin-gonic/gin). It processes orders from a message queue (Azure Service Bus) and stores them in a MongoDB database. This service is designed to work alongside the store-admin application.
@@ -213,3 +234,30 @@ To verify orders in the MongoDB database:
 - Ensure all environment variables are set correctly before running the application.
 - For production, set GIN_MODE=release to disable debug mode (export GIN_MODE=release).
 - If you encounter issues, verify connectivity to Azure Service Bus and MongoDB.
+
+## Summary: Makeline Service Environment Variables
+
+### Azure Service Bus Related Environment Variables
+
+| Environment Variable            | Description                                           | Example Value                                   |
+| ------------------------------- | ----------------------------------------------------- | ----------------------------------------------- |
+| `ORDER_QUEUE_URI`               | Azure Service Bus URI                                 | `amqps://your-namespace.servicebus.windows.net` |
+| `ORDER_QUEUE_LISTENER_USERNAME` | Listener username for Service Bus                     | `listener`                                      |
+| `ORDER_QUEUE_LISTENER_PASSWORD` | Listener password for Service Bus                     | `YourPrimaryKeyHere`                            |
+| `ORDER_QUEUE_NAME`              | Queue name in Service Bus                             | `orders`                                        |
+| `ORDER_QUEUE_TRANSPORT`         | Connection transport type                             | `tls`                                           |
+| `USE_WORKLOAD_IDENTITY_AUTH`    | Whether to use Azure Workload Identity authentication | `true`                                          |
+
+### MongoDB Related Environment Variables
+
+| Environment Variable       | Description             | Example Value               |
+| -------------------------- | ----------------------- | --------------------------- |
+| `ORDER_DB_URI`             | MongoDB connection URI  | `mongodb://localhost:27017` |
+| `ORDER_DB_NAME`            | MongoDB database name   | `orderdb`                   |
+| `ORDER_DB_COLLECTION_NAME` | MongoDB collection name | `orders`                    |
+
+### GIN Mode Setting
+
+| Environment Variable | Description                | Example Value                              |
+| -------------------- | -------------------------- | ------------------------------------------ |
+| `GIN_MODE`           | Gin framework running mode | `release` (set for production environment) |
