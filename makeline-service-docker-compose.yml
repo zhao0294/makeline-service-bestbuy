@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  mongodb:
+    image: mongo:6.0.6
+    container_name: 'mongo'
+    restart: always
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping').ok"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - backend_services
+  
+  virtual-customer:
+    image: ramymohamed/virtual-customer-l8:latest
+    container_name: 'virtual-customer'
+    restart: always
+    environment:
+      - ORDER_SERVICE_URL=http://order-service:3000/
+      - ORDERS_PER_HOUR=60
+    networks:
+      - backend_services
+    depends_on:
+      order-service:
+        condition: service_healthy
+networks:
+  backend_services:
+    driver: bridge
