@@ -7,8 +7,12 @@ WORKDIR /app
 # Set the build argument for the app version number
 ARG APP_VERSION=0.1.0
 
+# Copy only the Go modules and install dependencies (if any)
+COPY go.mod go.sum /app/
+RUN go mod download
+
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY . /app/
 
 # Build the Go app
 RUN go build -ldflags "-X main.version=$APP_VERSION" -o main .
