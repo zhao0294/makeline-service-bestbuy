@@ -67,9 +67,9 @@ For a local MongoDB instance (e.g., via Docker), set these environment variables
 
 ```bash
 
-export ORDER_DB_URI=mongodb://localhost:27017 
-export ORDER_DB_NAME=orderdb 
-export ORDER_DB_COLLECTION_NAME=orders
+    export ORDER_DB_URI=mongodb://localhost:27017 
+    export ORDER_DB_NAME=orderdb 
+    export ORDER_DB_COLLECTION_NAME=orders
 
 ```
 
