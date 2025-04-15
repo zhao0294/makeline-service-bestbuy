@@ -15,7 +15,7 @@ services:
       - backend_services
   
   virtual-customer:
-    image: ramymohamed/virtual-customer-l8:latest
+    image: congzhao0294/virtual-customer:latest
     container_name: 'virtual-customer'
     restart: always
     environment:
