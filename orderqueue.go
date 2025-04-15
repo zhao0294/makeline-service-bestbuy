@@ -101,7 +101,7 @@ func getOrdersFromQueue() ([]Order, error) {
 		orderQueueUsername := os.Getenv("ORDER_QUEUE_LISTENER_USERNAME")
 		if orderQueueName == "" {
 			log.Printf("ORDER_QUEUE_LISTENER_USERNAME is not set")
-			return nil, errors.New("ORDER_QUEUE_USERNAME is not set")
+			return nil, errors.New("ORDER_QUEUE_LISTENER_USERNAME is not set")
 		}
 
 		// Get queue password from environment variable
