@@ -163,3 +163,4 @@ Verify orders in MongoDB using these steps:
 
 - **Environment Variables**: Verify all variables are set correctly before starting.
 - **Troubleshooting**: Confirm connections to Azure Service Bus and MongoDB if issues arise.
+just test ci/cd

@@ -98,6 +98,7 @@ func getOrdersFromQueue() ([]Order, error) {
 		}
 
 		// Get queue username from environment variable
+		// Here is change the name to ORDER_QUEUE_LISTENER_USERNAME
 		orderQueueUsername := os.Getenv("ORDER_QUEUE_LISTENER_USERNAME")
 		if orderQueueName == "" {
 			log.Printf("ORDER_QUEUE_LISTENER_USERNAME is not set")
