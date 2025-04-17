@@ -134,28 +134,57 @@ Use the provided test-makeline-service.http file to test endpoints:
 
 ----------
 
-## 🗃️ Querying MongoDB
+## MongoDB Shell Access and Database Exploration
 
-Verify orders in MongoDB using these steps:
+In this section, you will use the MongoDB shell to interact with the `orderdb` database, which stores order information for the Algonquin Pet Store application. Follow the steps below to connect to the MongoDB pod and explore its contents.
 
-1. **Connect to MongoDB**
+#### **1- Access the MongoDB Shell**
 
-```bash
-    mongosh
-```
-
-2. **Switch to Database**
+Run the following command to connect to the MongoDB shell inside the running MongoDB pod:
 
 ```bash
-    show dbs use orderdb
+kubectl exec -it <mongodb-pod-name> -- mongo
 ```
 
-3. **Query Orders**
+Explanation: This command uses kubectl exec to open an interactive shell (-it) inside the MongoDB pod and starts the MongoDB shell program (mongo).
 
-``` bash
-    show collections db.orders.find() # List all orders  
-    db.orders.findOne({status: 1}) # View completed orders
+#### **2- List All Databases**
+
+Once inside the MongoDB shell, run:
+
+```bash
+show dbs
 ```
+
+Explanation: The show dbs command lists all databases available on the MongoDB server. You should see a list that includes the orderdb, which stores order-related data for the application.
+
+#### **3- Switch to the Order Database**
+
+```bash
+use orderdb
+```
+
+Explanation: The use orderdb command selects the orderdb database, making it the active database for subsequent queries and commands.
+
+#### **4- List Collections in the Database**
+
+Display all collections in the orderdb database:
+
+```bash
+show collections
+```
+
+Explanation: The show collections command lists all collections (similar to tables in relational databases) in the current database. The orders collection contains the order data.
+
+#### **5- Query the Orders Collection**
+
+Retrieve all documents in the orders collection:
+
+```bash
+db.orders.find()
+```
+
+Explanation: The db.orders.find() command fetches and displays all documents (records) in the orders collection. This allows you to view the stored order data, including details such as customer information, products, and order status.
 
 ----------
 
@@ -163,4 +192,3 @@ Verify orders in MongoDB using these steps:
 
 - **Environment Variables**: Verify all variables are set correctly before starting.
 - **Troubleshooting**: Confirm connections to Azure Service Bus and MongoDB if issues arise.
-just test ci/cd
